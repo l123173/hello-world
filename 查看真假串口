@@ -1,0 +1,14 @@
+1.使用ls -l ttyS*命令显示如下
+crw-rw----. 1 root dialout 4, 64  5月 17 02:24 /dev/ttyS0
+crw-rw----. 1 root dialout 4, 65  5月 17 02:24 /dev/ttyS1
+crw-rw----. 1 root dialout 4, 66  5月 17 02:24 /dev/ttyS2
+crw-rw----. 1 root dialout 4, 67  5月 17 02:24 /dev/ttyS3
+但你不知到哪个是真实的串口，虽然一般都是ttyS0，但也不敢妄然确定。
+
+2.使用cat /proc/tty/driver/serial
+serinfo:1.0 driver revision:
+0: uart:16550A port:000003F8 irq:4 tx:0 rx:0
+1: uart:unknown port:000002F8 irq:3
+2: uart:unknown port:000003E8 irq:4
+3: uart:unknown port:000002E8 irq:3
+我们发现串口0的uart值时16550A，tx值为0，rx值也为0，因此我们断定本机只有一个串口，是串口0，即ttyS0
